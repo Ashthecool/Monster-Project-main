@@ -1,5 +1,6 @@
 @import 'attention_seekers/pulse.css';
 
+/*---------------------login--------------------------------*/
 body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Full-width input fields */
@@ -23,10 +24,6 @@ button {
   width: 100%;
 }
 
-button:hover {
-  opacity: 0.8;
-}
-
 /* Extra styles for the cancel button */
 .cancelbtn {
   width: auto;
@@ -34,17 +31,6 @@ button:hover {
   background-color: #f44336;
 }
 
-/* Center the image and position the close button */
-.imgcontainer {
-  text-align: center;
-  margin: 24px 0 12px 0;
-  position: relative;
-}
-
-img.avatar {
-  width: 40%;
-  border-radius: 50%;
-}
 
 .container {
   padding: 16px;
@@ -94,21 +80,6 @@ span.psw {
   cursor: pointer;
 }
 
-/* Add Zoom Animation */
-.animate {
-  -webkit-animation: animatezoom 0.6s;
-  animation: animatezoom 0.6s
-}
-
-@-webkit-keyframes animatezoom {
-  from {-webkit-transform: scale(0)} 
-  to {-webkit-transform: scale(1)}
-}
-  
-@keyframes animatezoom {
-  from {transform: scale(0)} 
-  to {transform: scale(1)}
-}
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
@@ -117,6 +88,66 @@ span.psw {
      float: none;
   }
   .cancelbtn {
+     width: 100%;
+  }
+}
+
+/*-------------------sign up---------------------*/
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* Add a background color when the inputs get focus */
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+
+button:hover {
+  opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn2 {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn2, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+
+
+/* Style the horizontal ruler */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+ 
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
      width: 100%;
   }
 }
