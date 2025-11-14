@@ -14,6 +14,7 @@
         $servername = "localhost";
         $username = "root";
         $password = "";
+        $AC = "AC"
 
         $conn = new mysqli($servername, $username, $password);
 
@@ -22,6 +23,22 @@
         echo "<script>console.log('Connection failed: " . $conn->connect_error . "');</script>";
         }
         echo "<script>console.log('Connected successfully');</script>";
+
+        // Create database
+        $sql = "CREATE DATABASE AC";
+        if ($conn->query($sql) === TRUE) {
+        echo "Database created successfully";
+        } else {
+        echo "Error creating database: " . $conn->error;
+        }
+        CREATE TABLE MyGuests (
+        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        firstname VARCHAR(30) NOT NULL,
+        lastname VARCHAR(30) NOT NULL,
+        email VARCHAR(50),
+        reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        )
+        $conn->close();
     ?>
     <!-----------------login------------------>
     <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
