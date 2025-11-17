@@ -1,7 +1,7 @@
 body {
   background-image: linear-gradient(to bottom right, black, green, black, green, black);
   width: screen;
-  height: 1000px;
+  height: 1500px;
 }
 
 .Slider {
@@ -24,8 +24,8 @@ body {
 
 .Material {
   flex-shrink: 0;
-  width: 200px;          /* width of each card */
-  height: 250px;         /* height of each card */
+  width: 200px;
+  height: 250px;
   margin: 0 15px;
   display: flex;
   align-items: center;
@@ -95,4 +95,49 @@ body {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 16px;
   padding: 200px 250px;
+}
+
+h2 {
+  font: 'Copperplate';
+}
+
+p {
+  font-family: Consolas, monaco, monospace; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 36.4px;  
+}
+
+.container {
+  height: 10%;
+  width: 80%;
+  padding: 50px;
+  margin-top: 80px;
+  background-image: linear-gradient(to bottom right, white, skyblue, white, skyblue, white);
+  outline: black 5px solid ;
+  outline-color: black;
+  justify-self: center;
+  border-radius: 15px;
+}
+
+.Search, .Request, .Credits {
+  max-height: 80px;
+  width: 33%;
+  padding: 30px;
+  outline: solid black 3px;
+  transition: all;
+}
+
+.Search {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.Credits {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.Search:hover, .Request:hover, .Credits:hover {
+  background-color: yellow;
+  max-height: 80px;
+  width: 33%;
+  padding: 30px;
 }
