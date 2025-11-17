@@ -1,0 +1,143 @@
+body {
+  background-image: linear-gradient(to bottom right, black, green, black, green, black);
+  width: screen;
+  height: 1500px;
+}
+
+.Slider {
+  width: 90%;
+  margin: auto auto;
+  overflow:hidden;
+  position: center;
+  height: 270px; /* adjust for your can height */
+  background-color: rgba(0, 0, 0, 0.468);
+  border-radius: 12px;
+}
+
+.slide-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: scroll 25s linear infinite;
+  margin-top: auto;
+}
+
+.Material {
+  flex-shrink: 0;
+  width: 200px;
+  height: 250px;
+  margin: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f4f4f4;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.Material:hover {
+  transform: scale(1.05);
+}
+
+.Slider:hover {
+  background-color: 0 6px 14px rgba(0, 0, 0, 0.7);
+}
+
+.slide-track:hover {
+    animation-play-state: paused;
+    background-color: 0 6px 14px rgba(0, 0, 0, 0.7);
+}
+
+/* Image fit rules */
+.Material img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;  /* keeps full can visible, no squish */
+  border-radius: 12px;
+}
+
+/* Smooth looping animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* move only half track (10 of 20 slides) for seamless loop */
+    transform: translateX(-50%);
+  }
+}
+
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.Material:hover .image {
+  opacity: 0.3;
+}
+
+.Material:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: rgba(0, 0, 0, 0.468);
+  background-size: fill;
+  color: white;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 16px;
+  padding: 200px 250px;
+}
+
+h2 {
+  font: 'Copperplate';
+}
+
+p {
+  font-family: Consolas, monaco, monospace; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 36.4px;  
+}
+
+.container {
+  height: 10%;
+  width: 80%;
+  padding: 50px;
+  margin-top: 80px;
+  background-image: linear-gradient(to bottom right, white, skyblue, white, skyblue, white);
+  outline: black 5px solid ;
+  outline-color: black;
+  justify-self: center;
+  border-radius: 15px;
+}
+
+.Search, .Request, .Credits {
+  max-height: 80px;
+  width: 33%;
+  padding: 30px;
+  outline: solid black 3px;
+  transition: all;
+}
+
+.Search {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.Credits {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.Search:hover, .Request:hover, .Credits:hover {
+  background-color: yellow;
+  max-height: 80px;
+  width: 33%;
+  padding: 30px;
+}

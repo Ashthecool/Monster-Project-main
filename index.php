@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Horror Search</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="scripts.js"></script>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.webp">
     
 </head>
 <body>
