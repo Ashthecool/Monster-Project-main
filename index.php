@@ -10,69 +10,39 @@
     
 </head>
 <body>
-    <?php
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "AC"
-
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Check connection
-        if ($conn->connect_error) {
-        echo "<script>console.log('Connection failed: " . $conn->connect_error . "');</script>";
-        }
-        echo "<script>console.log('Connected successfully');</script>";
-
-        // Create database
-        $sql = "CREATE DATABASE AC";
-        if ($conn->query($sql) === TRUE) {
-        echo "Database created successfully";
-        } else {
-        echo "Error creating database: " . $conn->error;
-        }
-        CREATE TABLE MyGuests (
-        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        firstname VARCHAR(30) NOT NULL,
-        lastname VARCHAR(30) NOT NULL,
-        email VARCHAR(50),
-        reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-        )
-        $conn->close();
-    ?>
+    
     <!-----------------login------------------>
-    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+    <button onclick="document.getElementById('id01').style.display='block'" class="login_btn">Login</button>
 
     <div id="id01" class="modal">
     
-    <form class="modal-content" action="/action_page.php" method="post">
-        <div class="imgcontainer">
-        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-        
-        </div>
-
-        <div class="container">
-        <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
-
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+        <form class="modal-content" action="/action_page.php" method="post">
+            <div class="imgcontainer">
             
-        <button type="submit">Login</button>
-        <label>
-            <input type="checkbox" checked="checked" name="remember"> Remember me
-        </label>
-        </div>
+            </div>
 
-        <div class="container" style="background-color:#f1f1f1">
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-        <span class="psw">Forgot <a href="#">password?</a></span>
-        </div>
-    </form>
+            <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+                
+            <button type="submit">Login</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+        </form>
     </div>
 <!--------------------------------------------->
 <!--------------------sign up------------------->
-    <button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Sign Up</button>
+    <button onclick="document.getElementById('id02').style.display='block'" class="signin_btn">Sign Up</button>
 
     <div id="id02" class="modal">
     <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -104,7 +74,5 @@
     </form>
     </div>
     <!-------------------------------------------->
-        
-
 </body>
 </html>
