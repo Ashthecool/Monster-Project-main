@@ -141,3 +141,38 @@ p {
   width: 33%;
   padding: 30px;
 }
+
+#page2 {
+  height: 600px;
+  width: 80%;
+  padding: 50px;
+  margin-top: 80px;
+  color: white;
+  justify-self: center;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.drink {
+  width: 200px;
+  height: auto;
+  border-radius: 12px;
+  margin-top: 15px;
+  background-color: white;
+  border: black 3px solid;
+  box-shadow: 0 0 100px rgb(126, 157, 126);
+  padding: 20px 50px;
+  transform: all 0.3s ease;
+  transition: transform 0.9s ease, box-shadow 0.9s ease;
+}
+
+.drink image {
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+}
+
+.drink:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 500px rgb(126, 157, 126);
+}
