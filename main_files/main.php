@@ -128,7 +128,7 @@
                 } else {
                     // fallback to webp path (will show broken image) or use a placeholder
                     $src = $webpPath;
-                }
+                } 
 
                 echo "<img src='" . htmlspecialchars($src, ENT_QUOTES) . "' alt='" . htmlspecialchars($randomRow['drink_name'], ENT_QUOTES) . "' class='drink'>";
             }
