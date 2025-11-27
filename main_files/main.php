@@ -6,9 +6,23 @@
     <title>Monster Request</title>
     <link rel="stylesheet" href="main.css">
     <link rel="icon" type="image/x-icon" href="./assets/favicon.webp">
-    <script src="scripts.js"></script>
+    <script src="./scripts.js"></script>
 </head>
 <body onload="goToPage(1)">
+
+    <!-- Top-right menu toggle -->
+    <div id="bgMenuToggle">&#9776;</div>
+
+    <!-- Menu panel -->
+    <div id="bgMenuPanel">
+        <h3>Backgrounds</h3>
+        <button data-bg="green-black">Black + Green</button>
+        <button data-bg="white-silver">White + Silver</button>
+        <button data-bg="blue-yellow">Blue + Yellow</button>
+        <button data-bg="brown-golden">Brown + Golden</button>
+        <button data-bg="red-black">Red + Black</button>
+    </div>
+
 
     <main class="page" id="page1">
             <header>
@@ -29,50 +43,95 @@
                     }
 
                     $sql = "SELECT * FROM `monster_drinks`";
+                    
                     $result = $conn->query($sql);
 
                 ?>
 
             <?php 
-            $list_drinks = array('1.webp', '17.png', '5.webp', '2.webp', '9.png', '31.webp', '22.webp', '23.png', '33.webp', '20.webp')
-            ?>
-            <div class="Slider" style="border: solid rgba(0, 0, 0, 0.468); 5px;">
-            <div class="slide-track">
-                <?php
-                    foreach ($list_drinks as $d) {
-                        echo <<<HTML
-                        <div class='Material' style="border: solid black 5px;">
-                            <img 
-                                src='assets/drinks/$d' 
-                                alt='Drink $d' 
-                                class='drink'
-                            >
-                            <div class='middle'>
-                                <div class="text">Press for more info</div>
-                            </div>
-                        </div>
-                    HTML;
-                    }
+                $list_drinks = array('1.webp', '17.png', '5.webp', '2.webp', '9.png', '31.webp', '22.webp', '23.png', '33.webp', '20.webp');
 
-                    // duplicate for smooth loop
-                    foreach ($list_drinks as $d) {
-                        echo <<<HTML
-                        <div class='Material' style="border: solid black 5px;">
-                            <img 
-                                src='assets/drinks/$d' 
-                                alt='Drink $d' 
-                                class='drink'
-                            >
-                            <div class='middle'>
-                                <div class="text">Press for more info</div>
-                            </div>
-                        </div>
-                    HTML;
+                // Cache drinks from the DB
+                $allSql = "SELECT * FROM `monster_drinks`";
+                $allResult = $conn->query($allSql);
+                $drinks = [];
+
+                if ($allResult->num_rows > 0) {
+                    while ($row = $allResult->fetch_assoc()) {
+                        $drinks[$row['drink_id']] = $row;
                     }
+                }
+
+                function detectImage($d) {
+                    return "assets/drinks/$d";
+                }
+
                 ?>
-            
-            
-            </div>
+
+                <div class="Slider">
+                    <div class="slide-track">
+
+                        <?php
+                            // MAIN LOOP
+                            foreach ($list_drinks as $d) {
+                                $id = intval(pathinfo($d, PATHINFO_FILENAME));
+                                $drink = $drinks[$id] ?? null;
+
+                                $name = $drink ? htmlspecialchars($drink['drink_name'], ENT_QUOTES) : '';
+                                $desc = $drink ? htmlspecialchars($drink['flavor_description'], ENT_QUOTES) : '';
+                                $disc = $drink ? intval($drink['discontinued']) : 0;
+                                $category_id = $drink ? htmlspecialchars($drink['category_id'], ENT_QUOTES) : '';
+
+                                $src = detectImage($d);
+
+                                echo <<<HTML
+                                <div class="Material drink-card"
+                                    data-name="$name"
+                                    data-desc="$desc"
+                                    data-src="$src"
+                                    data-discontinued="$disc"
+                                    data-category='$category_id'
+                                    style="border: solid black 5px;">
+                                    
+                                    <img src="$src" alt="$name" class="drink">
+                                    <div class="middle">
+                                        <div class="text">Press for more info</div>
+                                    </div>
+                                </div>
+                                HTML;
+                            }
+
+                            // DUPLICATE LOOP
+                            foreach ($list_drinks as $d) {
+                                $id = intval(pathinfo($d, PATHINFO_FILENAME));
+                                $drink = $drinks[$id] ?? null;
+
+                                $name = $drink ? htmlspecialchars($drink['drink_name'], ENT_QUOTES) : '';
+                                $desc = $drink ? htmlspecialchars($drink['flavor_description'], ENT_QUOTES) : '';
+                                $disc = $drink ? intval($drink['discontinued']) : 0;
+
+                                $src = detectImage($d);
+
+                                echo <<<HTML
+                                <div class="Material drink-card"
+                                    data-name="$name"
+                                    data-desc="$desc"
+                                    data-src="$src"
+                                    data-discontinued="$disc"
+                                    style="border: solid black 5px;">
+                                    
+                                    <img src="$src" alt="$name" class="drink">
+                                    <div class="middle">
+                                        <div class="text">Press for more info</div>
+                                    </div>
+                                </div>
+                                HTML;
+                            }
+                        ?>
+
+                    </div>
+                </div>
+
         </div>
         
         <br><br><br>
@@ -94,46 +153,124 @@
             You can comment on existing monsters
         </p>
         <div class="container">
-            <button class="Search" onmousedown="goToPage(2)">Search</button>
+            <button class="Search" onmousedown="goToPage(2, -400)">Search</button>
             <button class="Request">Request Tastes</button>
             <button class="Credits">Who made this?</button>
         </div>
     </main>
 
     <div class="page" id="page2">
+        <div class="container">
+            <button class="Search" onmousedown="goToPage(1)">Main</button>
+            <button class="Request">Request Tastes</button>
+            <button class="Credits">Who made this?</button>
+        </div>
+        <br><br><br>
         <h1>All Monsters</h1>
         <p >Search up all kinds of monsters.</p>
-        <h1>Random Monster!</h1>
-        <?php
-            // Fetch a random monster from the database
-            $randomSql = "SELECT * FROM `monster_drinks` ORDER BY RAND() LIMIT 1";
-            $randomResult = $conn->query($randomSql);
-            if ($randomResult->num_rows > 0) {
-                $randomRow = $randomResult->fetch_assoc();
-                echo "<h1>" . $randomRow['drink_name'] . "</h1>";
-                echo "<h3>" . $randomRow['flavor_description'] . "</h3>";
-                $id = $randomRow['drink_id'];
-                $relDir = 'assets/drinks/';
-                $webpPath = $relDir . $id . '.webp';
-                $pngPath  = $relDir . $id . '.png';
+        
+        <div class="search-container">
+            <div class="top">
+                <input type="text" id="searchbar" onkeyup="filterMonsters()" placeholder="Search for monsters..">
+                <div id="searchResults" class="search-results-grid">
+                    <?php
+                        // Fetch all monsters from database
+                        $allSql = "SELECT * FROM `monster_drinks` ORDER BY drink_name";
+                        $allResult = $conn->query($allSql);
+                        
+                        if ($allResult->num_rows > 0) {
+                            while($row = $allResult->fetch_assoc()) {
+                                $id = $row['drink_id'];
+                                $name = htmlspecialchars($row['drink_name'], ENT_QUOTES);
+                                $description = htmlspecialchars($row['flavor_description'], ENT_QUOTES);
+                                $disc = $row ? intval($row['discontinued']) : 0;
+                                $category_id = htmlspecialchars($row['category_id'], ENT_QUOTES);
+                                
+                                $relDir = 'assets/drinks/';
+                                $webpPath = $relDir . $id . '.webp';
+                                $pngPath  = $relDir . $id . '.png';
+                                $fsWebp = __DIR__ . '/' . $webpPath;
+                                $fsPng  = __DIR__ . '/' . $pngPath;
+                                
+                                if (file_exists($fsWebp)) {
+                                    $src = $webpPath;
+                                } elseif (file_exists($fsPng)) {
+                                    $src = $pngPath;
+                                } else {
+                                    $src = $webpPath;
+                                }
+                                
+                                // Render the card with data attributes so JS can open modal safely
+                                // Use HTML-escaped values for attributes to avoid breaking markup
+                                $srcAttr = htmlspecialchars($src, ENT_QUOTES);
+                                echo <<<HTML
+                                <div class='drink-card' data-name="{$name}" data-desc="{$description}" data-src="{$srcAttr}" data-category='$category_id'>
+                                    <img src='$src' alt='$name' class='drink-thumbnail'>
+                                    <h3>$name</h3>
+                                    <h6 class='flavor-desc'>$description</h6>
+                                </div>
+                            HTML;
+                            }
+                        }
+                    ?>
+                </div>
+            </div>
+            <div class="mid">
 
-                // check filesystem using absolute path
-                $fsWebp = __DIR__ . '/' . $webpPath;
-                $fsPng  = __DIR__ . '/' . $pngPath;
+            </div>
+        </div>
+        <div class="bottom">
+            <h1>Random Monster!</h1>
+            <?php
+                // Fetch a random monster from the database
+                $randomSql = "SELECT * FROM `monster_drinks` ORDER BY RAND() LIMIT 1";
+                $randomResult = $conn->query($randomSql);
+                if ($randomResult->num_rows > 0) {
+                    $randomRow = $randomResult->fetch_assoc();
+                    echo "<h1>" . $randomRow['drink_name'] . "</h1>";
+                    echo "<h3>" . $randomRow['flavor_description'] . "</h3>";
+                    $id = $randomRow['drink_id'];
+                    $category_id = htmlspecialchars($randomRow['category_id'], ENT_QUOTES);
+                    $relDir = 'assets/drinks/';
+                    $webpPath = $relDir . $id . '.webp';
+                    $pngPath  = $relDir . $id . '.png';
 
-                if (file_exists($fsWebp)) {
-                    $src = $webpPath;
-                } elseif (file_exists($fsPng)) {
-                    $src = $pngPath;
-                } else {
-                    // fallback to webp path (will show broken image) or use a placeholder
-                    $src = $webpPath;
-                } 
+                    // check filesystem using absolute path
+                    $fsWebp = __DIR__ . '/' . $webpPath;
+                    $fsPng  = __DIR__ . '/' . $pngPath;
 
-                echo "<img src='" . htmlspecialchars($src, ENT_QUOTES) . "' alt='" . htmlspecialchars($randomRow['drink_name'], ENT_QUOTES) . "' class='drink'>";
-            }
-        ?>
-        <!-- <img src="./assets/drinks/SEBASTIAN.jpg" alt="" class="drink"> -->
+                    if (file_exists($fsWebp)) {
+                        $src = $webpPath;
+                    } elseif (file_exists($fsPng)) {
+                        $src = $pngPath;
+                    } else {
+                        // fallback to webp path (will show broken image) or use a placeholder
+                        $src = $webpPath;
+                    } 
+
+                    echo "<img src='" . htmlspecialchars($src, ENT_QUOTES) . "' alt='" . htmlspecialchars($randomRow['drink_name'], ENT_QUOTES) . "' class='drink drink-card' data-name=\"" . htmlspecialchars($randomRow['drink_name'], ENT_QUOTES) . "\" data-desc=\"" . htmlspecialchars($randomRow['flavor_description'], ENT_QUOTES) . "\" data-src='" . htmlspecialchars($src, ENT_QUOTES) . "' data-discontinued=\"$disc\" data-category='$category_id'> ";
+                }
+            ?>
+            <!-- <img src="./assets/drinks/SEBASTIAN.jpg" alt="" class="drink"> -->
+        </div>
+    </div>
+
+
+    <!-- Drink Details Modal: hidden by default, populated and shown via JS -->
+    <div id="drinkModal" class="drink-modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalDrinkName">
+            <button class="close-btn" id="modalCloseBtn" aria-label="Close">&times;</button>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img id="modalDrinkImage" src="" alt="" class="modal-drink-image">
+                </div>
+                <div class="modal-details">
+                    <h3 style="font-size: 1.5em;" id="modalDrinkName"></h3>
+                    <h6 style="font-size: 1em;" id="modalDrinkDescription" class="modal-description"></h6>
+                </div>
+            </div>
+            <div id="modalStatus" class="drink-status"></div>
+        </div>
     </div>
 
 
