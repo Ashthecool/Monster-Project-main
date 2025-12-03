@@ -186,3 +186,15 @@ const backgrounds = {
         });
     });
 });
+
+function openDeleteModal() {
+    document.getElementById('confirmDeleteModal').style.display = 'block';
+}
+
+function closeDeleteModal() {
+    document.getElementById('confirmDeleteModal').style.display = 'none';
+}
+
+function confirmDelete() {
+    window.location.href = "./delete_account.php";
+}

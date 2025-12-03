@@ -1,3 +1,24 @@
+<?php
+session_start();
+
+// Check session using the key we actually set
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../index.php");
+    exit();
+}
+
+// Optional: fetch username if you want it
+require_once "../db.php";
+$stmt = $conn->prepare("SELECT username FROM users WHERE id=? LIMIT 1");
+$stmt->bind_param("i", $_SESSION['user_id']);
+$stmt->execute();
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
+
+$username = $row['username'];
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +42,26 @@
         <button data-bg="blue-yellow">Blue + Yellow</button>
         <button data-bg="brown-golden">Brown + Golden</button>
         <button data-bg="red-black">Red + Black</button>
+    </div>
+
+    <div id="userBox">
+        <strong><?php echo htmlspecialchars($username); ?></strong>
+        <div class="dropdownMenu">
+            <a href="./logout.php">Log Out</a>
+            <a href="#" onclick="openDeleteModal()">Delete Account</a>
+        </div>
+    </div>
+
+
+        <!-- CONFIRM DELETE MODAL -->
+    <div id="confirmDeleteModal" class="deleteModal">
+        <div class="deleteBox">
+            <h3>Are you sure, baka?</h3>
+            <p>This will permanently delete your account.</p>
+            
+            <button class="deleteYes" onclick="confirmDelete()">Yes, delete me</button>
+            <button class="deleteNo" onclick="closeDeleteModal()">Cancel</button>
+        </div>
     </div>
 
 
