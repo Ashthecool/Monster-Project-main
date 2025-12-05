@@ -154,8 +154,8 @@
         </p>
         <div class="container">
             <button class="Search" onmousedown="goToPage(2, -400)">Search</button>
-            <button class="Request">Request Tastes</button>
-            <button class="Credits">Who made this?</button>
+            <button class="Request" onmousedown="goToPage(3, -400)">Request Tastes</button>
+            <button class="Credits" onmousedown="goToPage(4, -400)">Who made this?</button>
         </div>
     </main>
 
@@ -272,7 +272,92 @@
             <div id="modalStatus" class="drink-status"></div>
         </div>
     </div>
+    <div class="page" id="page3">
+        <!---
+        <h1>Request Tastes</h1>
+        <p>
+            <label>Comments</label><br>
+            <textarea cols="40" rows="2" placeholder="comments"></textarea>
+        </p>
+            -->
+        <form action="#" method="diolog">
+            <section class="chatbox1">
+                <p>
+                <label>Email</label><br>
+                    <input type="email" name="email" required="" placeholder="Email">
+                </p>
+                <p>
+                    <label>Name</label><br>
+                    <input type="text" name="Name" required="" placeholder="Full Name" >
+                </p>
+                <p>
+                    <label>Country</label><br>
+                    <select>
+                        <option name="China">China</option>
+                        <option>India</option>
+                        <option>United States</option>
+                        <option>Indonesia</option>
+                        <option>Brazil</option>
+                    </select>
+                </p>
+                <p>
+                    <label>phone number</label><br>
+                    <input type="tel" name="phone-number" placeholder="7 digids">
+                </p>
+                <p>
+                    <label>Suggest flavor</label><br>
+                    <textarea cols="40" rows="4" placeholder="comments"></textarea>
+                </p>
+                
+                <p>
+                    <label>
+                        <input type="checkbox" value="terms" required="">
+                        I agree to the <a>terms and conditions</a>
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input type="checkbox" value="terms">
+                        subscribe
+                    </label>
+
+                </p>
+                <p>
+                    <input type="submit" value="senda">
+                </p>
+            </section>
+        </form>
 
 
+        <div class="container">
+            <button class="Search" onmousedown="goToPage(1)">Main</button>
+            <button class="Request" onmousedown="goToPage(2)">Search</button>
+            <button class="Credits" onmousedown="goToPage(4)">Who made this?</button>
+        </div>
+    </div>
+    <div class="page" id="page4">
+        <!---Who made this-->
+        <p style="text-align: center;">The people who made this website:</p>
+            <h1>Asbjørn Stephan Kastvig Abbas</h1>
+            <h1 style="padding-bottom: 2em;">Hrafn Flóki Pétursson</h1>
+        <p style="text-align: center;">UFC Fighter sponsers:</p>
+            <h1>Valentina Shevchenko</h1>
+            <h1>Weili Zhang</h1>
+            <h1 style="padding-bottom: 2em;">Georges St-Pierre</h1>
+
+        <p style="text-align: center;">Monster energy sponsering snow boarders:</p>
+                <h1>Dusty Henricksen</h1>
+                <h1 style="padding-bottom: 2em;">Cameron Spalding</h1>
+
+        <p style="text-align: center;">Sponsering motor cycelists:</p>
+                <h1>takayuki Higashino</h1>
+                <h1>Chase Sexton</h1>
+
+
+        <div class="container">
+            <button class="Search" onmousedown="goToPage(1)">Main</button>
+            <button class="Request" onmousedown="goToPage(3)">Request Tastes</button>
+            <button class="Request" onmousedown="goToPage(2)">Search</button>
+        </div>
 </body>
 </html>
