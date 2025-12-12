@@ -75,6 +75,7 @@ if (isset($_POST['signup'])) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="./main_files/assets/favicon.webp">
 <title>Monster Energy Login</title>
 <style>
 /* --- Your CSS exactly the same, unchanged --- */
@@ -202,7 +203,7 @@ input:focus {
 
 <div class="centerWrap">
   <div class="title">MONSTER LOGIN</div>
-  <div class="subtitle">Unleash the beast, Steph… if you can handle it.</div>
+  <div class="subtitle">Unleash the beast… if you can handle it.</div>
   <button class="mainBtn" onclick="openM('loginModal')">Login</button>
   <button class="mainBtn" onclick="openM('signupModal')">Sign Up</button>
 </div>
