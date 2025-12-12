@@ -4,7 +4,7 @@ currentPage = 2;
 
 function goToPage(page, offset) {
     currentPage = page;
-    for (pageNum = 1; pageNum <= 3; pageNum++) {
+    for (pageNum = 1; pageNum <= 4; pageNum++) {
         const pageElement = document.getElementById("page" + pageNum);
         if (!pageElement) continue; // skip missing pages
         if (pageNum === currentPage) {

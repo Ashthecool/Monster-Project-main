@@ -154,6 +154,16 @@ p {
   border-radius: 15px;
   text-align: center;
 }
+#page4{
+  height: 600px;
+  width: 80%;
+  padding: 50px;
+  margin-top: 80px;
+  color: white;
+  justify-self: center;
+  border-radius: 15px;
+  text-align: center;
+}
 
 .drink {
   width: 200px;
